@@ -8,3 +8,9 @@ venv/
 
 # Secrets & Environment Variables
 .env
+
+# Vue.js dependencies
+frontend/node_modules/
+frontend/npm-debug.log*
+frontend/yarn-error.log
+frontend/pnpm-debug.log
