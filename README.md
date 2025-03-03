@@ -4,11 +4,8 @@ Sentinel AI is an open-source, AI-powered chatbot designed to educate users on c
 Features
 
 ✅ AI-driven cybersecurity education
-
 ✅ Phishing attack simulations
-
 ✅ Real-time Q&A on security best practices
-
 ✅ Interactive learning experience
 
 💡 Built with: Django, OpenAI GPT, REST API
