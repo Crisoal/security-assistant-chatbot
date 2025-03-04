@@ -25,6 +25,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'corsheaders',  # Add this
 
     # Third-party apps
     'crispy_forms',
@@ -36,6 +38,7 @@ INSTALLED_APPS = [
 
 # Middleware
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -116,8 +119,14 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / "static"]
+
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+    BASE_DIR / "frontend" / "dist"  # Include frontend build folder
+]
+
 STATIC_ROOT = BASE_DIR / "staticfiles"
+
 
 # Media files (User uploads)
 MEDIA_URL = '/media/'
