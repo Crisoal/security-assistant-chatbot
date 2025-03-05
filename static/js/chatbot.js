@@ -1,3 +1,5 @@
+// static/js/chatbot.js
+
 document.addEventListener("DOMContentLoaded", function () {
     const sendBtn = document.getElementById("send-btn");
     const userInput = document.getElementById("user-input");
