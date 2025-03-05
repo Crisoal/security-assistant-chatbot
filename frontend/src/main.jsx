@@ -1,6 +1,7 @@
 // src/main.jsx
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import Chatbot from "./components/Chatbot";
 
 // Your app component here
 const App = () => {
@@ -12,3 +13,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <App />
   </React.StrictMode>
 );
+
+ReactDOM.render(<Chatbot />, document.getElementById("chatbot"));

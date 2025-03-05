@@ -6,6 +6,10 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import SignupForm, LoginForm
+from chatbot.models import UserProgress
+
+def home_view(request):
+    return render(request, 'home.html')
 
 def signup_view(request):
     if request.method == 'POST':
@@ -42,3 +46,4 @@ def logout_view(request):
 @login_required
 def dashboard_view(request):
     return render(request, 'dashboard.html', {'user': request.user})
+
