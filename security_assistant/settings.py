@@ -124,12 +124,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
 
+# This should point to your global "static" folder
 STATICFILES_DIRS = [
-    BASE_DIR / "frontend"  # Include frontend build folder
+    BASE_DIR / "static"
 ]
 
+# This is where collected static files will be stored (for deployment)
 STATIC_ROOT = BASE_DIR / "staticfiles"
-
 
 # Media files (User uploads)
 MEDIA_URL = '/media/'
@@ -137,3 +138,4 @@ MEDIA_ROOT = BASE_DIR / "media"
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+

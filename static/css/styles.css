@@ -1,0 +1,67 @@
+/* Full-page background */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Navbar - Transparent */
+.navbar {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    background: transparent;
+}
+
+/* Hero Section - Full Screen */
+.hero-section {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    position: relative;
+    background: linear-gradient(135deg, #374151, #14B8A6, #E5E7EB);
+    background-size: 300% 300%;
+    animation: gradientAnimation 6s infinite alternate;
+}
+
+/* Overlay for readability */
+.hero-overlay {
+    background: rgba(0, 0, 0, 0.4); /* Dark overlay */
+    padding: 2rem;
+    border-radius: 10px;
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: #14B8A6;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #0D9488;
+}
+
+.btn-secondary {
+    background-color: #374151;
+    border: none;
+}
+
+.btn-secondary:hover {
+    background-color: #1F2937;
+}
+
+/* Gradient Animation */
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 100% 50%;
+    }
+}

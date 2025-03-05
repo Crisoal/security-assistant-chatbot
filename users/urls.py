@@ -13,5 +13,4 @@ urlpatterns = [
     path('logout/', logout_view, name='logout'),
     path('dashboard/', dashboard_view, name='dashboard'),
     path('chatbot/', include('chatbot.urls')),
-    path('accounts/', include('django.contrib.auth.urls')),  # Handles login/logout
 ]
