@@ -1,13 +1,11 @@
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Inter", system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
+  color: #213547;
+  background-color: #f4f4f4;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -22,12 +20,14 @@ a:hover {
   color: #535bf2;
 }
 
+/* Center the authentication form */
 body {
   margin: 0;
   display: flex;
-  place-items: center;
-  min-width: 320px;
+  align-items: center;
+  justify-content: center;
   min-height: 100vh;
+  background-color: #f0f2f5;
 }
 
 h1 {
@@ -35,19 +35,21 @@ h1 {
   line-height: 1.1;
 }
 
+/* Buttons */
 button {
   border-radius: 8px;
-  border: 1px solid transparent;
+  border: none;
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: #646cff;
+  color: white;
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: background-color 0.3s ease;
 }
 button:hover {
-  border-color: #646cff;
+  background-color: #535bf2;
 }
 button:focus,
 button:focus-visible {
@@ -64,5 +66,12 @@ button:focus-visible {
   }
   button {
     background-color: #f9f9f9;
+  }
+}
+/* Responsive */
+@media (max-width: 480px) {
+  .auth-container {
+    width: 90%;
+    padding: 20px;
   }
 }
