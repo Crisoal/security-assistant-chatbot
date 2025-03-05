@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
         messagesDiv.scrollTop = messagesDiv.scrollHeight;
     }
 
+
     async function sendMessage() {
         const userMessage = userInput.value.trim();
         if (!userMessage) return;

@@ -8,5 +8,5 @@ urlpatterns = [
     path('', home_view, name='home'),  # Set home as the root URL
     path('admin/', admin.site.urls),
     path('users/', include('users.urls')),  # Include user authentication URLs
-    path('chatbot/', include('chatbot.urls')),  # Add this line to include chatbot URLs
+    path('chatbot/', include('chatbot.urls'))  # Add this line to include chatbot URLs
 ]
