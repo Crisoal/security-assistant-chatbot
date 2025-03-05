@@ -1,5 +1,6 @@
 # users/views.py
 
+from django.contrib.auth.models import Group, Permission
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
@@ -11,6 +12,9 @@ def signup_view(request):
         form = SignupForm(request.POST)
         if form.is_valid():
             user = form.save()
+            # Automatically add user to 'User' group
+            user_group = Group.objects.get(name='User')
+            user.groups.add(user_group)
             login(request, user)
             messages.success(request, "Registration successful!")
             return redirect('dashboard')

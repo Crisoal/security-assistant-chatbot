@@ -71,17 +71,21 @@ TEMPLATES = [
 # WSGI application
 WSGI_APPLICATION = 'security_assistant.wsgi.application'
 
+AUTH_USER_MODEL = 'users.CustomUser'
+
+
 # Database Configuration (MySQL)
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.getenv('MYSQL_DATABASE', 'security_assistant_db'),
-        'USER': os.getenv('MYSQL_USER', 'root'),
-        'PASSWORD': os.getenv('MYSQL_PASSWORD', 'your-password'),
-        'HOST': os.getenv('MYSQL_HOST', 'localhost'),
-        'PORT': os.getenv('MYSQL_PORT', '3306'),
+        'NAME': os.getenv('MYSQL_DATABASE'),
+        'USER': os.getenv('MYSQL_USER'),
+        'PASSWORD': os.getenv('MYSQL_PASSWORD'),
+        'HOST': os.getenv('MYSQL_HOST'),
+        'PORT': os.getenv('MYSQL_PORT'),
         'OPTIONS': {
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
+            'charset': 'utf8mb4',
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES', foreign_key_checks = 0;"
         }
     }
 }
@@ -121,8 +125,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    BASE_DIR / "static",
-    BASE_DIR / "frontend" / "dist"  # Include frontend build folder
+    BASE_DIR / "frontend"  # Include frontend build folder
 ]
 
 STATIC_ROOT = BASE_DIR / "staticfiles"

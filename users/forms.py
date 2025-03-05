@@ -5,11 +5,10 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from .models import CustomUser
 
 class SignupForm(UserCreationForm):
-    role = forms.ChoiceField(choices=[('admin', 'Admin'), ('user', 'User')])
-
+    # Remove role field - users will be automatically added to 'User' group
     class Meta:
         model = CustomUser
-        fields = ['username', 'email', 'role', 'password1', 'password2']
+        fields = ['username', 'email', 'password1', 'password2']
 
 class LoginForm(AuthenticationForm):
     class Meta:
