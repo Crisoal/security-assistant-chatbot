@@ -74,10 +74,10 @@ WSGI_APPLICATION = 'security_assistant.wsgi.application'
 AUTH_USER_MODEL = 'users.CustomUser'
 
 
-# Database Configuration (MySQL)
+# Database Configuration (MySQL using mysql-connector-python)
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'mysql.connector.django',  # Use mysql-connector instead of MySQLdb
         'NAME': os.getenv('MYSQL_DATABASE'),
         'USER': os.getenv('MYSQL_USER'),
         'PASSWORD': os.getenv('MYSQL_PASSWORD'),
@@ -85,6 +85,7 @@ DATABASES = {
         'PORT': os.getenv('MYSQL_PORT'),
         'OPTIONS': {
             'charset': 'utf8mb4',
+            'collation': 'utf8mb4_general_ci',  # Change collation
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES', foreign_key_checks = 0;"
         }
     }
