@@ -36,21 +36,12 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero-section" style="background-image: url('{% static 'images/pic2.jpg' %}');">
-      <div class="container">
-        <div class="row justify-content-center text-center">
-          <div class="col-md-8">
-            <h1 class="header">Welcome to Sentinel AI</h1>
-            <p class="description">
-              Stay safe online with our AI-powered chatbot. Learn how to protect
-              yourself from cyber threats, scams, and social engineering attacks
-              through interactive lessons and real-time simulations.
-            </p>
-            <div class="cta-buttons">
-              <a href="#features" class="btn btn-primary">Explore Features</a>
-              <a href="{% url 'signup' %}" class="btn btn-secondary">Get Started</a>
-            </div>
-          </div>
+    <div class="hero-section">
+        <div class="hero-overlay">
+            <h1>Welcome to Sentinel AI</h1>
+            <p>Cybersecurity Awareness for SMBs</p>
+            <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
+            <a href="{% url 'signup' %}" class="btn btn-secondary">Sign Up</a>
         </div>
       </div>
     </section>
