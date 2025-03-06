@@ -1,38 +1,30 @@
 # chatbot/views.py
 
-import openai
 import os
 import json
 import requests
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from dotenv import load_dotenv
-
-# Load environment variables from .env
-load_dotenv()
-
-openai.api_key = os.getenv("OPENAI_API_KEY")
-RASA_SERVER_URL = os.getenv("RASA_SERVER_URL")
+from django.contrib.auth.decorators import login_required
+from django.conf import settings
+from .services.openai_service import OpenAIService
 
 @csrf_exempt
+@login_required
 def chatbot_response(request):
-    if request.method == "POST":
+    if request.method != "POST":
+        return JsonResponse({"error": "Invalid request method"}, status=405)
+
+    try:
         data = json.loads(request.body)
         user_message = data.get("message", "")
-
+        
         if not user_message:
             return JsonResponse({"error": "No message provided"}, status=400)
 
-        # Call OpenAI API
-        try:
-            response = openai.ChatCompletion.create(
-                model="gpt-4o-mini",
-                messages=[{"role": "user", "content": user_message}]
-            )
-            bot_reply = response["choices"][0]["message"]["content"]
-        except Exception as e:
-            return JsonResponse({"error": str(e)}, status=500)
-
-        return JsonResponse({"response": bot_reply})
-
-    return JsonResponse({"error": "Invalid request method"}, status=405)
+        openai_service = OpenAIService()
+        response = openai_service.get_response(user_message, request.user)
+        
+        return JsonResponse({"response": response})
+    except Exception as e:
+        return JsonResponse({"error": str(e)}, status=500)

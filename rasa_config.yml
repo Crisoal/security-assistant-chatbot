@@ -1,0 +1,18 @@
+language: en
+pipeline:
+  - name: PretrainedEmbeddingExtractor
+    model_name: "bert-base-nli-mean-tokens"
+  - name: RegexEntityExtractor
+  - name: EntitySynonymMapper
+  - name: IntentClassifier
+    model_name: "bert-base-nli-mean-tokens"
+  - name: ResponseSelector
+    model_name: "bert-base-nli-mean-tokens"
+  - name: FallbackClassifier
+    threshold: 0.7
+    ambiguity_threshold: 0.1
+policies:
+  - name: RulePolicy
+  - name: TEDPolicy
+    max_history: 5
+    constrain_similarities: true
