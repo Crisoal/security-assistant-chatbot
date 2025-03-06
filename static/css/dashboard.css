@@ -1,43 +1,81 @@
-#chatbot-container {
+body {
+    margin: 0;
+    padding-top: 56px; /* Account for navbar height */
+}
+/* #chatbot-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 300px;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+} */
+
+/* Fix navbar width */
+.navbar {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
     position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 300px;
-    background: white;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    padding: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    top: 0;
+    z-index: 1030;
+}
+
+/* Fix footer width */
+.footer {
+    width: 150vw;
+    margin-left: calc(-50vw + 50%);
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+/* Adjust container for main content */
+.container {
+    max-width: none;
+    padding-left: calc(50vw - 50%);
+    padding-right: calc(50vw - 50%);
 }
 
 #chatbox {
-    display: flex;
-    flex-direction: column;
-    height: 300px;
-    overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  height: 300px;
+  overflow-y: auto;
 }
 
 #messages {
-    flex-grow: 1;
-    padding: 10px;
+  flex-grow: 1;
+  padding: 10px;
 }
 
 #user-input {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
 }
 
 #send-btn {
-    width: 100%;
-    background: #007bff;
-    color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    margin-top: 5px;
+  width: 100%;
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  margin-top: 5px;
 }
 
 #send-btn:hover {
-    background: #0056b3;
+  background: #0056b3;
+}
+
+.card {
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: scale(1.05);
 }
