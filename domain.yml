@@ -1,0 +1,58 @@
+intents:
+  - greet
+  - ask_security_question
+  - request_training
+  - report_incident
+  - ask_policy
+  - request_assessment
+  - test_skills
+  - get_progress
+  - get_recommendations
+
+entities:
+  - security_topic
+  - industry_type
+  - company_size
+  - role_type
+
+slots:
+  user_role:
+    type: text
+    mappings: ["role_type"]
+  industry:
+    type: text
+    mappings: ["industry_type"]
+  company_size:
+    type: text
+    mappings: ["company_size"]
+  current_module:
+    type: text
+  progress:
+    type: float
+    mappings: ["progress_percentage"]
+
+responses:
+  utter_greet:
+    - "Hello! I'm your cybersecurity assistant. What would you like to learn about today?"
+  utter_ask_role:
+    - "What is your role in the organization?"
+  utter_ask_industry:
+    - "What industry does your organization operate in?"
+  utter_ask_company_size:
+    - "How many employees does your organization have?"
+  utter_default:
+    - "I didn't quite understand that. Could you please rephrase?"
+  utter_fallback:
+    - "I'm not sure about that. Let me check with our security experts."
+
+actions:
+  - utter_greet
+  - utter_ask_role
+  - utter_ask_industry
+  - utter_ask_company_size
+  - utter_default
+  - utter_fallback
+  - action_get_progress
+  - action_get_recommendations
+  - action_initiate_training
+  - action_security_assessment

@@ -1,41 +1,80 @@
 // static/js/chatbot.js
 
-document.addEventListener("DOMContentLoaded", function () {
-    const sendBtn = document.getElementById("send-btn");
-    const userInput = document.getElementById("user-input");
-    const messagesDiv = document.getElementById("messages");
-
-    function appendMessage(sender, text) {
-        const messageElement = document.createElement("div");
-        messageElement.classList.add(sender);
-        messageElement.innerText = text;
-        messagesDiv.appendChild(messageElement);
-        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+class ChatBot {
+    constructor() {
+        this.baseUrl = `${window.location.protocol}//${window.location.host}`;
+        this.messagesContainer = document.getElementById('messages');
+        this.inputField = document.getElementById('user-input');
+        this.sendButton = document.getElementById('send-btn');
+        
+        this.setupEventListeners();
+        this.loadMessages();
     }
 
+    setupEventListeners() {
+        this.sendButton.addEventListener('click', () => this.sendMessage());
+        this.inputField.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                this.sendMessage();
+            }
+        });
+    }
 
-    async function sendMessage() {
-        const userMessage = userInput.value.trim();
-        if (!userMessage) return;
-        appendMessage("user", `You: ${userMessage}`);
-        userInput.value = "";
+    async sendMessage() {
+        const message = this.inputField.value.trim();
+        if (!message) return;
 
+        this.addMessage('user', message);
+        this.inputField.value = '';
+        
         try {
-            const response = await fetch("/chatbot/respond/", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ message: userMessage }),
+            const response = await fetch(`${this.baseUrl}/chatbot/respond/`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+                },
+                body: JSON.stringify({ message })
             });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
             const data = await response.json();
-            appendMessage("bot", `Bot: ${data.response}`);
+            this.addMessage('bot', data.response);
         } catch (error) {
-            console.error("Error:", error);
-            appendMessage("bot", "Bot: Error processing your request.");
+            console.error('Error:', error);
+            this.addMessage('bot', 'Sorry, I encountered an error. Please try again.');
         }
     }
 
-    sendBtn.addEventListener("click", sendMessage);
-    userInput.addEventListener("keypress", function (event) {
-        if (event.key === "Enter") sendMessage();
-    });
+    addMessage(sender, message) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `message ${sender}`;
+        messageDiv.innerHTML = `
+            <div class="message-content">
+                ${message}
+            </div>
+        `;
+        this.messagesContainer.appendChild(messageDiv);
+        this.messagesContainer.scrollTop = this.messagesContainer.scrollHeight;
+    }
+
+    async loadMessages() {
+        try {
+            const response = await fetch(`${this.baseUrl}/chatbot/messages/`);
+            const messages = await response.json();
+            
+            messages.forEach(msg => {
+                this.addMessage(msg.sender, msg.content);
+            });
+        } catch (error) {
+            console.error('Error loading messages:', error);
+        }
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const chatbot = new ChatBot();
 });
