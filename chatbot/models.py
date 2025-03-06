@@ -8,9 +8,9 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 class UserProfile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     role = models.CharField(max_length=50, choices=[
-        ('owner', 'Owner'),
-        ('manager', 'Manager'),
-        ('employee', 'Employee')
+        ('business_owner', 'Business Owner/Manager'),
+        ('employee', 'Employee (General)'),
+        ('it_staff', 'IT/Technical Staff')
     ])
     industry = models.CharField(max_length=100)
     company_size = models.CharField(max_length=20, choices=[
