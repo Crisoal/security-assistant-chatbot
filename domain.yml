@@ -1,3 +1,5 @@
+# domain.yml
+
 intents:
   - greet
   - ask_security_question

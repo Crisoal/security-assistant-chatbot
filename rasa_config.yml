@@ -1,3 +1,5 @@
+# rasa_config.yml
+
 language: en
 pipeline:
   - name: PretrainedEmbeddingExtractor
@@ -16,3 +18,4 @@ policies:
   - name: TEDPolicy
     max_history: 5
     constrain_similarities: true
+

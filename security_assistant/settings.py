@@ -91,6 +91,13 @@ DATABASES = {
     }
 }
 
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'TIMEOUT': 300  # 5 minutes
+    }
+}
+
 # Authentication and Authorization
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
