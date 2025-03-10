@@ -1,56 +1,235 @@
+/* General Styling */
+body {
+  background-color: #121212;
+  color: #ffffff;
+  font-family: "Arial", sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+  padding: 0 20px;
+}
+
+/* Container for Navbar Items */
+.navbar-items {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* Space between items */
+}
+
+/* Chatbot Container */
 #chatbot-container {
-    width: 80vw;
-    margin: 0 auto;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  width: 90%;
+  max-width: 800px;
+  margin: 20px auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  background-color: #1e1e1e;
+  display: flex;
+  flex-direction: column;
+  height: 75vh;
+  overflow: hidden;
 }
 
+/* Messages Box */
 #chatbox {
-    display: flex;
-    flex-direction: column;
+  flex-grow: 1;
+  padding: 15px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
-#messages {
-    padding: 1rem;
-    background-color: #f8f9fa;
-    border-radius: 8px 8px 0 0;
+/* Chat Message Wrapper */
+.message-wrapper {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  width: 100%;
 }
 
-.message {
-    margin: 0.5rem 0;
-    padding: 0.5rem;
-    border-radius: 8px;
-    max-width: 70%;
-}
-
+/* User Messages */
 .message.user {
-    background-color: #007bff;
-    color: white;
-    margin-left: auto;
+  background-color: #4b4f64;
+  color: white;
+  align-self: flex-end;
+  padding: 12px 16px;
+  border-radius: 18px;
+  max-width: 60%;
+  text-align: left;
+  word-wrap: break-word;
+  font-size: 14px;
+  line-height: 1.4;
 }
 
+/* Bot Messages */
 .message.bot {
-    background-color: #e9ecef;
-    margin-right: auto;
+  background-color: #333;
+  color: white;
+  padding: 12px 16px;
+  border-radius: 18px;
+  max-width: 60%;
+  text-align: left;
+  word-wrap: break-word;
+  font-size: 14px;
+  line-height: 1.4;
 }
 
-.quick-actions {
-    padding: 1rem;
-    background-color: #f8f9fa;
-    border-radius: 8px 8px 0 0;
+/* Avatar Styling */
+.avatar {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
 }
 
-.input-group {
-    padding: 1rem;
-    background-color: white;
-    border-radius: 0 0 8px 8px;
+/* Aligning Messages Correctly */
+.user-message {
+  justify-content: flex-end;
 }
 
-.input-group input {
-    border-radius: 4px 0 0 4px;
+.bot-message {
+  justify-content: flex-start;
 }
 
-.input-group button {
-    border-radius: 0 4px 4px 0;
+/* Input Box */
+.input-container {
+  display: flex;
+  padding: 10px;
+  background: #1e1e1e;
+  border-top: 1px solid #333;
+}
+
+.input-container input {
+  flex-grow: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background: #333;
+  color: white;
+  outline: none;
+}
+
+.input-container button {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 10px;
+  margin-left: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.input-container button:hover {
+  background: #0056b3;
+}
+
+/* Scrollbar Customization */
+#chatbox::-webkit-scrollbar {
+  width: 6px;
+}
+
+#chatbox::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+#chatbox::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Light Theme (Default) */
+.light-theme {
+  background-color: #ffffff;
+  color: #121212;
+}
+
+.light-theme .navbar {
+  background-color: #f8f9fa;
+  color: #121212;
+}
+
+.light-theme #chatbot-container {
+  background-color: #f0f0f0;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.light-theme #chatbox {
+  background-color: #ffffff;
+}
+
+.light-theme .message.user {
+  background-color: #007bff;
+  color: white;
+}
+
+.light-theme .message.bot {
+  background-color: #e0e0e0;
+  color: black;
+}
+
+.light-theme .input-container {
+  background: #ffffff;
+  border-top: 1px solid #ddd;
+}
+
+.light-theme .input-container input {
+  background: #f8f8f8;
+  color: black;
+}
+
+.light-theme .input-container button {
+  background: #007bff;
+}
+
+.light-theme .input-container button:hover {
+  background: #0056b3;
+}
+
+/* Light Theme Navbar */
+.light-theme .navbar {
+  background-color: #f8f9fa !important;
+  color: #121212 !important;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Ensure text and icons change to black */
+.light-theme .navbar * {
+  color: #121212 !important;
+}
+/* Ensure navbar links and buttons are visible */
+.light-theme .navbar a,
+.light-theme .navbar .text-white {
+  color: #121212 !important;
+}
+
+.light-theme .btn-danger {
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
+
+.light-theme .btn-danger:hover {
+  background-color: #c82333;
+  border-color: #bd2130;
+}
+
+/* Override Bootstrap's .navbar-dark class */
+.light-theme .navbar .navbar-brand,
+.light-theme .navbar .text-white,
+.light-theme .navbar i {
+  color: #121212 !important;
+}
+/* Theme Toggle Button - Change Icon Color */
+.light-theme #theme-toggle {
+  color: #121212 !important;
 }
