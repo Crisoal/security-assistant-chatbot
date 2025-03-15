@@ -6,7 +6,7 @@
 <!-- Navbar (Appears at the Top, Not Fixed) -->
 <nav class="navbar">
     <div class="navbar-left">
-        <h5 class="chatbot-name">Sentinel</h5>
+        <h5 class="chatbot-name" href="{% url 'home' %}">Sentinel AI</h5>
     </div>
     <div class="navbar-right">
         <button id="theme-toggle" class="btn btn-outline-light">
@@ -54,7 +54,7 @@
 <!-- Quick Actions (Initially Visible) -->
 <div id="quick-actions" class="quick-actions">
     <button class="action-btn" data-action="continue-learning">Continue Learning</button>
-    <button class="action-btn" data-action="run-security-check">Run Security Check</button>
+    <button class="action-btn" data-action="run-security-check">Start Security Assessment</button>
     <button class="action-btn" data-action="test-my-skills">Test My Skills</button>
 </div>
 

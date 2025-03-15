@@ -62,6 +62,7 @@ class SecurityAssessment(models.Model):
     def __str__(self):
         return f"{self.user.username} - Assessment on {self.assessment_date}"
 
+
 class SecurityScenario(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField()

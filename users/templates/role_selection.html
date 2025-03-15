@@ -3,6 +3,120 @@
 {% load static %}
 
 {% block content %}
+<!-- Navbar (Appears at the Top, Not Fixed) -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="navbar-left">
+        <h6 href="{% url 'home' %}" class="chatbot-name">Sentinel AI</h6>
+    </div>
+    <div class="navbar-right">
+        <button id="theme-toggle" class="btn btn-outline-light">
+            <i class="fa-solid fa-moon"></i>
+        </button>
+        <div class="user-initial">{{ user.username.0|upper }}</div>
+        <a href="{% url 'logout' %}" class="btn btn-danger">Logout</a>
+    </div>
+</nav>
+
+<style>
+    /* Global Styles */
+    body {
+        background-color: #ebebeb;
+        /* Light background color */
+        font-family: Arial, sans-serif;
+    }
+
+    /* Navbar Styles */
+    .navbar {
+        background-color: #343a40;
+        /* Dark gray background */
+        padding: 1rem 2rem;
+    }
+
+    .navbar-left h5 {
+        color: #fff;
+        font-weight: bold;
+    }
+
+    .navbar-right {
+        color: #fff;
+    }
+
+    .navbar-right .btn {
+        margin-left: 10px;
+    }
+
+    /* Card Styles */
+    .card {
+        border-radius: 10px;
+        border: none;
+    }
+
+    .card-body {
+        background-color: #ffffff;
+    }
+
+    .card-body h2 {
+        color: #343a40;
+        /* Dark gray text */
+        font-weight: bold;
+    }
+
+    .card-body p {
+        color: #6c757d;
+        /* Light gray text */
+    }
+
+    /* Button Styles */
+    .btn-primary {
+        background-color: #28a745;
+        /* Light green */
+        border: none;
+        color: white;
+        font-size: 16px;
+        padding: 10px 20px;
+        border-radius: 5px;
+    }
+
+    .btn-primary:hover {
+        background-color: #218838;
+        /* Darker green on hover */
+    }
+
+    .form-check-label {
+        color: #343a40;
+        /* Dark gray text */
+    }
+
+    /* Error Message Styles */
+    #error-message {
+        font-size: 14px;
+    }
+
+    /* Centering the Button */
+    .d-flex.justify-content-center {
+        margin-top: 20px;
+    }
+
+    /* Transparent Logout Button with Light Green Border */
+    .navbar-right .btn-danger {
+        background-color: transparent;
+        border: 2px solid #fff;
+        /* Light green border */
+        color: #14b8a6;
+        /* Light green text */
+        padding: 8px 20px;
+        border-radius: 5px;
+        font-weight: bold;
+    }
+
+    .navbar-right .btn-danger:hover {
+        background-color: #14b8a6;
+        /* Light green background on hover */
+        color: #fff;
+        /* White text on hover */
+    }
+</style>
+
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -15,16 +129,18 @@
                     <div id="error-message" class="text-danger mb-3"></div>
                     <form id="role-selection-form" method="post">
                         {% csrf_token %}
-                        <div class="row justify-content-around">
+                        <div class="row justify-content-center">
                             {% for value, label in user.ROLE_CHOICES %}
-                            <div class="form-check col-4 mb-3">
+                            <div class="form-check col-md-4 mb-3">
                                 <input type="radio" id="role_{{ value }}" name="role" value="{{ value }}"
                                     class="form-check-input" required>
                                 <label for="role_{{ value }}" class="form-check-label">{{ label }}</label>
                             </div>
                             {% endfor %}
                         </div>
-                        <button type="submit" class="btn btn-primary">Select Role</button>
+                        <div class="d-flex justify-content-center">
+                            <button type="submit" class="btn btn-primary px-5 py-2">Select Role</button>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -53,7 +169,6 @@
                         "X-CSRFToken": document.querySelector("[name=csrfmiddlewaretoken]").value
                     }
                 });
-
 
                 const data = await response.json();
                 if (data.success) {

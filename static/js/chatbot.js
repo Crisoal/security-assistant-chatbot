@@ -108,15 +108,26 @@ class ChatBot {
     addMessage(sender, message) {
         const messageWrapper = document.createElement("div");
         messageWrapper.classList.add("message-wrapper", sender === "user" ? "user-message" : "bot-message");
-
+    
         const messageDiv = document.createElement("div");
         messageDiv.classList.add("message", sender);
+    
+        // If bot, format response properly
+        if (sender === "bot") {
+            message = message
+                .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")  // Bold text
+                .replace(/\n- /g, "<br>• ")  // Convert bullets to list format
+                .replace(/\n/g, "<br>");  // Preserve new lines
+        }
+    
         messageDiv.innerHTML = message;
-
         messageWrapper.appendChild(messageDiv);
         this.messagesContainer.appendChild(messageWrapper);
+    
+        // Auto-scroll to bottom
         this.messagesContainer.scrollTop = this.messagesContainer.scrollHeight;
     }
+    
 
     showTypingIndicator() {
         const typingDiv = document.createElement("div");
@@ -139,7 +150,7 @@ document.addEventListener("DOMContentLoaded", () => {
 document.addEventListener("DOMContentLoaded", function () {
     const themeToggle = document.getElementById("theme-toggle");
     const body = document.body;
-    
+
     // Check local storage for theme preference
     if (localStorage.getItem("theme") === "light") {
         body.classList.add("light-theme");
@@ -148,7 +159,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     themeToggle.addEventListener("click", function () {
         body.classList.toggle("light-theme");
-        
+
         if (body.classList.contains("light-theme")) {
             localStorage.setItem("theme", "light");
             themeToggle.innerHTML = '<i class="fa-solid fa-sun"></i>';
