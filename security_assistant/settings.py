@@ -48,6 +48,10 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+CSRF_COOKIE_HTTPONLY = True
+CSRF_USE_SESSIONS = True
+CSRF_FAILURE_VIEW = 'users.views.csrf_failure'
+
 # Root URL configuration
 ROOT_URLCONF = 'security_assistant.urls'
 

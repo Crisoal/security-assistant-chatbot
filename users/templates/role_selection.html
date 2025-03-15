@@ -1,0 +1,70 @@
+<!-- templates/role_selection.html -->
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="text-center mb-4">Welcome to Sentinel AI</h2>
+                    <p class="lead text-center mb-4">
+                        To customize your security training experience, please select your role:
+                    </p>
+                    <div id="error-message" class="text-danger mb-3"></div>
+                    <form id="role-selection-form" method="post">
+                        {% csrf_token %}
+                        <div class="row justify-content-around">
+                            {% for value, label in user.ROLE_CHOICES %}
+                            <div class="form-check col-4 mb-3">
+                                <input type="radio" id="role_{{ value }}" name="role" value="{{ value }}"
+                                    class="form-check-input" required>
+                                <label for="role_{{ value }}" class="form-check-label">{{ label }}</label>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <button type="submit" class="btn btn-primary">Select Role</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const form = document.getElementById('role-selection-form');
+        const errorMessage = document.getElementById('error-message');
+
+        form.addEventListener('submit', async function (event) {
+            event.preventDefault();
+            errorMessage.textContent = '';
+
+            try {
+                const formData = new FormData(form);
+                const response = await fetch("{% url 'role_selection' %}", {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        "X-Requested-With": "XMLHttpRequest",
+                        "X-CSRFToken": document.querySelector("[name=csrfmiddlewaretoken]").value
+                    }
+                });
+
+
+                const data = await response.json();
+                if (data.success) {
+                    window.location.href = "{% url 'dashboard' %}";
+                } else {
+                    errorMessage.textContent = data.error || 'An error occurred';
+                }
+            } catch (error) {
+                errorMessage.textContent = 'An error occurred while processing your request';
+            }
+        });
+    });
+</script>
+{% endblock %}
