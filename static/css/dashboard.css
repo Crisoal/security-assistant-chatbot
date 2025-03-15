@@ -170,8 +170,8 @@ body {
 }
 
 .light-theme .input-container input {
-    background: #ffffff;
-    color: black;
+    background: lightgray;
+    color: black !important;
 }
 
 .light-theme .message.user {
