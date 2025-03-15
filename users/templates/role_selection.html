@@ -9,9 +9,6 @@
         <h6 href="{% url 'home' %}" class="chatbot-name">Sentinel AI</h6>
     </div>
     <div class="navbar-right">
-        <button id="theme-toggle" class="btn btn-outline-light">
-            <i class="fa-solid fa-moon"></i>
-        </button>
         <div class="user-initial">{{ user.username.0|upper }}</div>
         <a href="{% url 'logout' %}" class="btn btn-danger">Logout</a>
     </div>
@@ -100,7 +97,7 @@
     /* Transparent Logout Button with Light Green Border */
     .navbar-right .btn-danger {
         background-color: transparent;
-        border: 2px solid #fff;
+        border: 2px solid #14b8a6;
         /* Light green border */
         color: #14b8a6;
         /* Light green text */
